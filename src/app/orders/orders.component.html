@@ -1,0 +1,53 @@
+<div class="card border-primary mb-3"> <!--style="max-width: 18rem;"-->
+  <div class="card-header">Orders</div>
+  <div class="card-body text-primary ">
+    <h5 class="card-title">List of orders</h5>
+
+    <div>
+      <button class="btn btn-rounded btn-primary" type="button" (click)="createNewOrder()">Create order</button>
+    </div>
+    <br>
+
+    <table class="table table-bordered table-stripped" > <!--*ngIf="orders?.length>0"-->
+      <thead>
+        <tr>
+          <th style="text-align: center;">#Order</th>
+          <th style="text-align: center;">Date</th>
+          <th style="text-align: center;">#Products</th>
+          <th style="text-align: center;">Final Price</th>
+          <th style="text-align: center;" colspan="2">
+            Options
+          </th>
+        </tr>
+      </thead>
+      <tr *ngIf="loading">
+        <td colspan="5" class="text-center">
+          <div *ngIf="loading" class="text-center mt-3">
+            <div class="spinner-border text-secondary" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <p class="mt-2">Loading...</p>
+          </div>
+        </td>
+      </tr>
+      <tbody>
+        <tr *ngFor="let order of data">
+          <td style="text-align: center;">{{order.orderId}}</td>
+          <td style="text-align: center;">{{order.orderDate | date: 'EEEE dd,MMMM yyyy'}}</td>
+          <td style="text-align: center;">{{order.numProducts}}</td>
+          <td style="text-align: center;">{{order.finalPrice}}</td>
+          <td style="text-align: center;">
+            <button type="button" name="editar" class="btn btn-primary" (click)="editOrder(order, order.orderId)">edit</button><!--[routerLink]="['/addedit/form/',order.orderId]""-->
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)='confirmDelete(order)' class="btn btn-danger btn-sm" data-toggle="modal">delete</button><!--data-target="#exampleModalCenter"-->
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="data && data.length === 0" class="alert alert-info">
+      Theres no orders registered.
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="card border-primary mb-3"> <!--style="max-width: 18rem;"-->
+  <div class="card-header">{{isEditing ? 'Update Order' :  'New Order'}}</div>
+  <div class="card-body text-primary bg-black text-white">
+    <h5 class="card-title">Choose your new Orders</h5>
+    <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <button type="button"  class="btn btn-primary" (click)="addProductsEditing(isEditing)">Add New Product</button><!--[routerLink]="['/addedit/formproducts/', order.orderId]"-->
+      <span *ngIf="isEditing" >Order N: {{orderNumber}}</span>
+      <span *ngIf="isEditing">Date : {{orderDate}}</span>
+      <span>Products : {{calculateTotalQuantity()}}</span>
+      <span>Final Price : {{calculateTotalPrice()}}</span>
+    </div>
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+
+    <!--
+    <div *ngIf="clientes?.length ==0" class="alert alert-info">
+      No hay regsitros en la base de datos.
+    </div>
+    -->
+    <table class="table table-bordered table-stripped" > <!--*ngIf="orders?.length>0"-->
+      <thead>
+        <tr>
+          <th style="text-align: center;">ID</th>
+          <th style="text-align: center;">Name</th>
+          <th style="text-align: center;">Unit Price</th>
+          <th style="text-align: center;">Quantity</th>
+          <th style="text-align: center;">Total Price</th>
+          <th style="text-align: center;" colspan="2">
+            Options
+          </th>
+        </tr>
+      </thead>
+      <tr *ngIf="loading && isCreatingNewOrder">
+        <td colspan="6" class="text-center">
+          <div *ngIf="loading" class="text-center mt-3">
+            <div class="spinner-border text-secondary" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <p class="mt-2">Loading...</p>
+          </div>
+        </td>
+      </tr>
+      <tbody>
+        <tr *ngFor="let itemOrder of itemsOrderList"> <!--*ngFor="let order of orders"-->
+
+          <td style="text-align: center;">{{itemOrder.id.productId}}</td>
+          <td style="text-align: center;">{{itemOrder.productName}}</td>
+          <td style="text-align: center;">{{itemOrder.productUnitPrice}}</td>
+          <td style="text-align: center;">{{itemOrder.quantity}}</td>
+          <td style="text-align: center;">{{itemOrder.productTotalPrice}}</td>
+          <!--<td>{{itemOrder.createAt | date: 'EEEE dd,MMMM yyyy'}}</td>-->
+          <td style="text-align: center;">
+            <button type="button" name="editar" class="btn btn-primary" (click)="editItemOrder(itemOrder)">edit</button><!--[routerLink]="['/addedit/formproducts/'+itemOrder.productId]"-->
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)="deleteItemOrder(itemOrder)" class="btn btn-danger btn-sm">delete</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <!--<paginator-nav *ngIf="paginador" [paginador] = "paginador"></paginator-nav>-->
+    <div style="margin-top: 20px; text-align: right; bottom: 20px; right: 20px;">
+      <button type="button" (click)="addOrder()" class="btn btn-success" >{{isEditing ? 'Update' :  'Create'}}</button>
+      <button type="button" [routerLink]="['/orders/my-orders']" class="btn btn-danger" style="margin-left: 10px;" (click)="cancelOrder()">Cancel</button>
+    </div>
+
+  </div>
+</div>
