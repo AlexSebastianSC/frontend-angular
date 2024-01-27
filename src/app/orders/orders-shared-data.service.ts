@@ -11,8 +11,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class OrdersSharedDataService {
 
   private apiUrl = 'https://pruebafractal-red-pine-9084.fly.dev';
-  //private apiUrl = 'http://localhost:8080';
-  private orders: Order[] = [];
 
   order: Order = new Order();
   dataItem:any;
@@ -137,7 +135,7 @@ export class OrdersSharedDataService {
     this.editingOrder = { order, index };
   }
 
-  getEditingOrder(): Order {//{ itemOrder: ItemOrder, index: number } {
+  getEditingOrder(): Order {
     return this.editingOrder.order;
   }
 

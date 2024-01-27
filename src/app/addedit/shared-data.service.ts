@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ItemOrder } from './itemOrder';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ export class DataService {
 
   private itemOrders: ItemOrder[] = [];
   editingItem: { itemOrder: ItemOrder, index: number };
-  //editingItem: ItemOrder = null;
   editingItemIndex: number = -1;
 
   constructor() { }
@@ -44,8 +42,8 @@ export class DataService {
     this.editingItem = { itemOrder, index };
   }
 
-  getEditingItem(): ItemOrder {//{ itemOrder: ItemOrder, index: number } {
-    return this.editingItem.itemOrder;//return { itemOrder: this.editingItem, index: this.editingItemIndex };
+  getEditingItem(): ItemOrder {
+    return this.editingItem.itemOrder;
   }
 
   clearEditingItem(): void {

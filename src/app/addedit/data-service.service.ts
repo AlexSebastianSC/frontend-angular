@@ -12,7 +12,6 @@ import { Product } from './product';
 })
 export class DataService {
   private itemsUrl = "https://pruebafractal-red-pine-9084.fly.dev";
-  //private itemsUrl = 'http://localhost:8080';
   private itemsSubject = new BehaviorSubject<ItemOrder[]>([]);
   items$ = this.itemsSubject.asObservable();
 
@@ -50,7 +49,7 @@ export class DataService {
     return this.createdMode.value;
   }
 
-  //Set collection of objects on service
+
   setItems(items: ItemOrder[]):void{
       this.itemsSubject.next(items);
   }
@@ -62,7 +61,7 @@ export class DataService {
     console.log(this.itemsSubject)
   }
 
-  // Agregar arreglos de objetos al servicio
+
   addItems(items: ItemOrder[]): void {
     const currentItems = this.itemsSubject.value;
     this.itemsSubject.next([...currentItems, ...items]);
@@ -81,8 +80,6 @@ export class DataService {
     return this.selectedProductSubject.value;
   }
 
-
-  // Agregar un solo objeto al servicio
   addItem(item: ItemOrder): void {
     const currentItems = this.itemsSubject.value;
     this.itemsSubject.next([...currentItems, item]);
@@ -92,28 +89,23 @@ export class DataService {
     return this.itemsSubject.value;
   }
 
-
-  //Getting object ItemOrder temporal
   getItemOrder(): ItemOrder|null{
     return this.itemOrderSubject.value;
   }
 
-  //Set object ItemOrder temporal on service
   setItemOrder(itemOrder: ItemOrder): void{
     this.itemOrderSubject.next(itemOrder);
   }
 
   clearItems(): void {
-    this.itemsSubject.next([]); // You can set it to any initial or empty value
+    this.itemsSubject.next([]);
   }
 
 
-  //Getting object ItemOrder temporal
   getOrder(): Order|null{
     return this.orderSubject.value;
   }
 
-  //Set object ItemOrder temporal on service
   setOrder(order: Order): void{
     this.orderSubject.next(order);
   }

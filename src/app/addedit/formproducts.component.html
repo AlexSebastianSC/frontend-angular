@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-md-6"> <!-- Ajusta el tamaño según tus preferencias -->
+    <div class="col-md-6">
       <div class="form-floating">
         <ng-container  *ngIf="!isEditing; else staticProductName">
-          <select class="form-select" [(ngModel)]="selectedProductId" (change)="onChangeProduct()"> <!--[(ngModel)]="selectedProductId"-->
-            <option value="" [disabled]="isEditing">Select a product</option><!--<option value="" disabled selected>Select a product</option>-->
+          <select class="form-select" [(ngModel)]="selectedProductId" (change)="onChangeProduct()">
+            <option value="" [disabled]="isEditing">Select a product</option>
             <option *ngFor="let product of availableProducts" [value]="product.productId">{{product.productName}}</option>
           </select>
           <label for="floatingSelectGrid">Choose the product</label>
@@ -15,7 +15,7 @@
       </div>
       <br>
       <div>
-        Product price: {{ selectedProductPrice != null ? (selectedProductPrice) : '' }} <!--<span class="badge badge-pill badge-warning">{{ selectedProductPrice != null ? (selectedProductPrice) : 'N/A' }}</span>-->
+        Product price: {{ selectedProductPrice != null ? (selectedProductPrice) : '' }}
       </div>
       <br>
       <label for="quantity" class="me-2">Choose quantity:</label>
@@ -24,14 +24,14 @@
       </div>
       <br>
       <div>
-        Final Price: {{ calculateTotalPrice()}}<!--<span class="badge badge-pill badge-success">{{ calculateTotalPrice()}}</span>-->
+        Final Price: {{ calculateTotalPrice()}}
       </div>
 
       <div class="row justify-content-center mt-3">
         <div class="col-md">
           <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-success btn-sm mx-2" (click)="onOKButtonClick()">{{isEditing ? 'Update' :  'OK'}}</button>
-            <button type="button" class="btn btn-secondary btn-sm mx-2" (click)="onCancelButtonClick()">Cancel</button><!--{{ isEditing ? 'Cancel' : 'Back' }}-->
+            <button type="button" class="btn btn-secondary btn-sm mx-2" (click)="onCancelButtonClick()">Cancel</button>
           </div>
         </div>
       </div>

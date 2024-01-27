@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ProductService} from './product.service';
 import { Product } from './product';
 import { ItemOrder } from './itemOrder';
-//import { DataService } from './shared-data.service';
 import { DataService } from './data-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -70,29 +69,6 @@ export class FormproductsComponent implements OnInit{
     console.log(this.selectedProductId);
     console.log(this.selectedProductPrice)
 
-    // Desactiva la opción de cambio en el select
-    //this.isEditing = true;
-
-    /*
-    if (this.products.length === 0) {
-      this.productService.getProductos().subscribe(products => {
-        this.products = products;
-        this.loadSelectedProduct(productId);
-      });
-    } else {
-      // La lista de productos ya está cargada, busca el producto seleccionado.
-      const selectedProductIndex = this.products.findIndex(product => product.productId === productId);
-
-      if (selectedProductIndex !== -1) {
-        this.selectedProduct = this.products[selectedProductIndex];
-        this.selectedProductId = this.selectedProduct.productId;
-        this.selectedProductPrice = this.selectedProduct ? this.selectedProduct.productPrice : null;
-        this.quantity = this.itemOrders.find(itemOrder => itemOrder.id.productId === productId)?.quantity || 1;
-      } else {
-        console.error(`Product with id ${productId} not found.`);
-      }
-    }
-    */
   }
 
   onChangeProduct(): void {
@@ -170,7 +146,6 @@ export class FormproductsComponent implements OnInit{
 
   updateAvailableProducts(): void {
     console.log('All Products:', this.products);
-    //console.log('Item Orders:', this.itemOrders);
 
     const allProducts = this.products;
 

@@ -39,7 +39,6 @@ export class OrdersComponent {
 
    createNewOrder(){
     this.ordersSharedDataService.setCreatingNewOrder(true);
-    //this.creatingNewOrder = true;
     this.router.navigate(['/addedit/form/newOrder']);
   }
 
@@ -62,9 +61,6 @@ export class OrdersComponent {
       this.dataService.setItems(items);
     });
 
-    //console.log("this.dataService.getItemsOrder 1",this.dataService.getItemOrder);
-    //console.log("this.dataService.getItemsOrder 2",this.dataService.getItems);
-    //console.log("this.dataService.getItemsOrder 3",this.dataService.getItemsOrder);
     this.dataService.setOrder(order);
     console.log("this.dataService.getOrder",this.dataService.getOrder())
     this.router.navigate(['/addedit/form', orderId]);

@@ -25,18 +25,14 @@ export class FormComponent implements OnInit {
   itemsUpdate: ItemOrder[]= [];
   actualQuantity: number;
   actualFinalPrice: number;
-  //orderId: number;
 
   isCreatingNewOrder: boolean = false;
   showSuccessAlert: boolean = false;
 
   itemOrders: ItemOrder[]= [];
   order:Order = new Order();
-  data: Order[];
   titulo:string = "New order";
-  errores: string[];
   isEditing :boolean =false;
-  //itemOrders: any;
 
   constructor(
     private dataService: DataService,
@@ -51,24 +47,12 @@ export class FormComponent implements OnInit {
 
     if(this.orderSharedDataService.isCreatingNewOrder()){
       this.initializeForm();
-      //this.isEditing=false;
     }else{
-      //this.isCreatingNewOrder= false;
-
-      /*this.dataService.fetchItems(this.dataService.getOrder().orderId).subscribe(items => {
-        this.dataService.addItems(items);
-      });*/
-
-      //console.log("this.getItems",this.dataService.getItemsOrder());
 
       this.orderSharedDataService.setCreatingNewOrder(false);
       this.isEditing=true;
-      //console.log(this.dataService.getOrder())
-      //console.log("this.Order",this.dataService.getOrder());
       const itemsOrderList: ItemOrder[] = this.dataService.getItemsOrder();
-
       const order = this.dataService.getOrder() || new Order();
-      //this.totalQuantity = this.calculateTotalQuantity(); //this.dataService.getOrder().numProducts;
       this.orderDate = this.dataService.getOrder().orderDate;
       this.orderNumber =  this.dataService.getOrder().orderId;
 
@@ -153,31 +137,6 @@ addOrder() {
     }
     this.orderSharedDataService.setCreatingNewOrder(false);
     this.router.navigate(["/orders/my-orders"]);
-    //window.location.reload();
-
-    /*
-    if (this.dataService.getItemsOrder().length > 0 && this.itemsUpdate.length!==0) {
-      const body = this.generateOrderBody();
-      if(!this.orderSharedDataService.isCreatingNewOrder()){
-        const bodyOrderUpdate = this.generateOrderUpdateBody();
-        const bodyItemOrderUpdate = this.generateItemsOrderUpdateBody();
-        this.orderSharedDataService.updateOrder(bodyOrderUpdate);
-        this.orderSharedDataService.updateItemsOrder(bodyItemOrderUpdate);
-      }else{
-      this.orderSharedDataService.putOrder(body);
-    }
-
-
-
-      this.router.navigate(["/orders/my-orders"]);
-      //window.location.reload();
-
-    } else {
-      alert('No hay productos en la orden o no hay cambios.')
-    }
-
-    this.orderSharedDataService.setCreatingNewOrder(false);
-      */
 
   }
 
@@ -196,10 +155,8 @@ addOrder() {
 
 
     this.orderSharedDataService.getOrderDetails(orderId).subscribe(data => {
-      //this.order = data.order;
       console.log(data);
       this.itemOrders = data;
-      //console.log(this.itemOrders);
     });
 
   }
@@ -211,17 +168,15 @@ addOrder() {
       const bodyOrderUpdate = {
         orderId: this.dataService.getOrder().orderId,
         orderDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
-        numProducts: quantity,//this.calculateTotalQuantity(),//this.actualQuantity,//update error
-        finalPrice:finalPrice, //this.calculateTotalPrice(),// this.actualFinalPrice, //update error
+        numProducts: quantity,
+        finalPrice:finalPrice,
       };
       console.log("bodyOrderUpdate",bodyOrderUpdate)
       return bodyOrderUpdate
   }
 
   generateItemsOrderUpdateBody():any{
-    //this.itemsUpdate = this.itemsOrderList;
     console.log("Update item body: ", this.itemsUpdate)
-      //const dtoBodyItemOrder = this.dataService.getItemsOrder().map((item: ItemOrder) => ({
       const dtoBodyItemOrder = this.itemsUpdate.map((item: ItemOrder) => ({
       id:{
         orderId: this.dataService.getOrder().orderId,
@@ -259,9 +214,7 @@ addOrder() {
 
     const aux = { bodyOrder,dtoBodyItemOrder };
     // Devolver el cuerpo completo
-    console.log(aux);
     this.dataService.clearItems();
-    //this.dataService
     return aux;
   }
 

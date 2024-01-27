@@ -9,20 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
 
   private products: Product[] =[];
-  private apiUrl = 'https://pruebafractal-red-pine-9084.fly.dev';//'assets/products.json';
-  //private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'https://pruebafractal-red-pine-9084.fly.dev';
 
   constructor(private http: HttpClient) {
   }
 
   getProductos(): Observable<Product[]> {
-
     return this.http.get<any>(`${this.apiUrl}/api/products`);
-
-    //return this.http.get<Product[]>(this.productsUrl);
   }
-  /*getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
-  }*/
+
 }
 

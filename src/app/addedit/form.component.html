@@ -1,21 +1,15 @@
-<div class="card border-primary mb-3"> <!--style="max-width: 18rem;"-->
+<div class="card border-primary mb-3">
   <div class="card-header">{{isEditing ? 'Update Order' :  'New Order'}}</div>
   <div class="card-body text-primary bg-black text-white">
     <h5 class="card-title">Choose your new Orders</h5>
     <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-      <button type="button"  class="btn btn-primary" (click)="addProductsEditing(isEditing)">Add New Product</button><!--[routerLink]="['/addedit/formproducts/', order.orderId]"-->
+      <button type="button"  class="btn btn-primary" (click)="addProductsEditing(isEditing)">Add New Product</button>
       <span *ngIf="isEditing" >Order N: {{orderNumber}}</span>
       <span *ngIf="isEditing">Date : {{orderDate}}</span>
       <span>Products : {{calculateTotalQuantity()}}</span>
       <span>Final Price : {{calculateTotalPrice()}}</span>
     </div>
-    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
 
-    <!--
-    <div *ngIf="clientes?.length ==0" class="alert alert-info">
-      No hay regsitros en la base de datos.
-    </div>
-    -->
     <table class="table table-bordered table-stripped" > <!--*ngIf="orders?.length>0"-->
       <thead>
         <tr>
@@ -49,7 +43,7 @@
           <td style="text-align: center;">{{itemOrder.productTotalPrice}}</td>
           <!--<td>{{itemOrder.createAt | date: 'EEEE dd,MMMM yyyy'}}</td>-->
           <td style="text-align: center;">
-            <button type="button" name="editar" class="btn btn-primary" (click)="editItemOrder(itemOrder)">edit</button><!--[routerLink]="['/addedit/formproducts/'+itemOrder.productId]"-->
+            <button type="button" name="editar" class="btn btn-primary" (click)="editItemOrder(itemOrder)">edit</button>
           </td>
           <td>
             <button type="button" name="eliminar" (click)="deleteItemOrder(itemOrder)" class="btn btn-danger btn-sm">delete</button>

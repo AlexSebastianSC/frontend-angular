@@ -37,10 +37,10 @@
           <td style="text-align: center;">{{order.numProducts}}</td>
           <td style="text-align: center;">{{order.finalPrice}}</td>
           <td style="text-align: center;">
-            <button type="button" name="editar" class="btn btn-primary" (click)="editOrder(order, order.orderId)">edit</button><!--[routerLink]="['/addedit/form/',order.orderId]""-->
+            <button type="button" name="editar" class="btn btn-primary" (click)="editOrder(order, order.orderId)">edit</button>
           </td>
           <td>
-            <button type="button" name="eliminar" (click)='confirmDelete(order)' class="btn btn-danger btn-sm" data-toggle="modal">delete</button><!--data-target="#exampleModalCenter"-->
+            <button type="button" name="eliminar" (click)='confirmDelete(order)' class="btn btn-danger btn-sm" data-toggle="modal">delete</button>
 
           </td>
         </tr>
