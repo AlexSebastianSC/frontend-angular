@@ -23,7 +23,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/products.json"
+              "src/products.json",
+              "src/_redirects"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
